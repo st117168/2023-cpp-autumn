@@ -18,7 +18,7 @@ int main(int argc(), char* argv[]) {
 	else if (s10 == 4) {
 		std::cout << "XL";
 	}
-	else if (s10>=5) {
+	else if (s10 >= 5) {
 		std::cout << "L";
 	}
 	if (s10 == 3 || s10 == 8) {

@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{262ca789-5049-4350-b552-de34e9ec7672}</ProjectGuid>
-    <RootNamespace>My01</RootNamespace>
+    <ProjectGuid>{0feac94f-94eb-47f7-b14d-bab4e0f664f3}</ProjectGuid>
+    <RootNamespace>My05</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FileName второе решение.cpp" />
     <ClCompile Include="FileName.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
