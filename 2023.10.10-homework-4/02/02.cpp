@@ -14,7 +14,7 @@ int main (int*, char**)
         *(c + i) = a;
     }
 
-    for (int i = 1; i < n; i += 2)
+    for (int i = 0; i < n; i += 2)
     {
         std::cout << *(c + i) << " ";
     }
