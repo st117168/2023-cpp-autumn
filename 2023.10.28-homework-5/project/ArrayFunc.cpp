@@ -8,7 +8,7 @@ void printArray(int* a, int len)
     setlocale(LC_ALL, "Russian");
     if (a == nullptr)
 	{
-		std::cout << "Ìàññèâ ïóñò" << std::endl;
+		std::cout << "ÐœÐ°ÑÑÐ¸Ð² Ð¿ÑƒÑÑ‚" << std::endl;
 	}
 	else
     {

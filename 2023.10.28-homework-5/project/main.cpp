@@ -42,7 +42,7 @@ int main(int argc(), char* argv[])
                 case 2:
                 {
                     int element = 0;
-                    std::cout << "Ââåäèòå ýëåìåíò äëÿ äîáàâëåíèÿ: ";
+                    std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð´Ð»Ñ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ñ: ";
                     std::cin >> element;
                     addElement(a, len, element);
                     break;
@@ -50,9 +50,9 @@ int main(int argc(), char* argv[])
                 case 3:
                 {
                     int index = 0;
-                    std::cout << "Ââåäèòå èíäåêñ äëÿ óäàëåíèÿ: ";
+                    std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð½Ð´ÐµÐºÑ Ð´Ð»Ñ ÑƒÐ´Ð°Ð»ÐµÐ½Ð¸Ñ: ";
                     std::cin >> index;
-                    std::cout << "Óäàëåíî: " << extractElement(a, len, index) << std::endl;
+                    std::cout << "Ð£Ð´Ð°Ð»ÐµÐ½Ð¾: " << extractElement(a, len, index) << std::endl;
                     system("pause");
                     break;
                 }
@@ -68,10 +68,10 @@ int main(int argc(), char* argv[])
                 }
                 case 6:
                 {
-                    std::cout << "Èñõîäíûé ìàññèâ:" << std::endl;
+                    std::cout << "Ð˜ÑÑ…Ð¾Ð´Ð½Ñ‹Ð¹ Ð¼Ð°ÑÑÐ¸Ð²:" << std::endl;
                     printArray(a, len);
                     swap_LastMin_FirstMax(a, len);
-                    std::cout << "Îáíîâëåííûé ìàññèâ:" << std::endl;
+                    std::cout << "ÐžÐ±Ð½Ð¾Ð²Ð»ÐµÐ½Ð½Ñ‹Ð¹ Ð¼Ð°ÑÑÐ¸Ð²:" << std::endl;
                     printArray(a, len);
                     system("pause");
                     break;
@@ -84,7 +84,7 @@ int main(int argc(), char* argv[])
                 case 8:
                 {
                     int n = 0;
-                    std::cout << "Ââåäèòå ÷èñëî n: ";
+                    std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ‡Ð¸ÑÐ»Ð¾ n: ";
                     std::cin >> n;
                     addNRandomElements(a, len, n);
                     break;
@@ -96,7 +96,7 @@ int main(int argc(), char* argv[])
                 }
                 default:
                 {
-                    std::cout << "Íåèçâåñòíàÿ êîìàíäà" << std::endl;
+                    std::cout << "ÐÐµÐ¸Ð·Ð²ÐµÑÑ‚Ð½Ð°Ñ ÐºÐ¾Ð¼Ð°Ð½Ð´Ð°" << std::endl;
                     break;
                 }
 			}
@@ -108,14 +108,14 @@ int main(int argc(), char* argv[])
 
 void printMenu()
 {
-	std::cout << "0 - Âûõîä èç ïðîãðàììû" << std::endl;
-	std::cout << "1 - Âûâåñòè ìàññèâ" << std::endl;
-	std::cout << "2 - Äîáàâèòü ýëåìåíò â ìàññèâ" << std::endl;
-	std::cout << "3 - Óäàëèòü ýëåìåíò èç ìàññèâà" << std::endl;
-	std::cout << "4 - Îòñîðòèðîâàòü ìàññèâ ïî âîçðàñòàíèþ" << std::endl;
-	std::cout << "5 - Ðàçâåðíóòü ìàññèâ" << std::endl;
-	std::cout << "6 - Ïîìåíÿòü ìåñòàìè ïåðâûé ìàêñèìàëüíûé è ïîñëåäíèé ìèíèìàëüíûé ýëåìåíò ìàññèâà" << std::endl;
-	std::cout << "7 - Óäàëèòü èç ìàññèâà âñå äóáëèêàòû" << std::endl;
-	std::cout << "8 - Äîáàâèòü â ìàññèâ n ñëó÷àéíûõ (îò 0 äî 99) ýëåìåíòîâ" << std::endl;
-	std::cout << "9 - Âêë/âûêë ïîñòîÿííûé âûâîä ìàññèâà" << std::endl;
+	std::cout << "0 - Ð’Ñ‹Ñ…Ð¾Ð´ Ð¸Ð· Ð¿Ñ€Ð¾Ð³Ñ€Ð°Ð¼Ð¼Ñ‹" << std::endl;
+	std::cout << "1 - Ð’Ñ‹Ð²ÐµÑÑ‚Ð¸ Ð¼Ð°ÑÑÐ¸Ð²" << std::endl;
+	std::cout << "2 - Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð² Ð¼Ð°ÑÑÐ¸Ð²" << std::endl;
+	std::cout << "3 - Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð¸Ð· Ð¼Ð°ÑÑÐ¸Ð²Ð°" << std::endl;
+	std::cout << "4 - ÐžÑ‚ÑÐ¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¼Ð°ÑÑÐ¸Ð² Ð¿Ð¾ Ð²Ð¾Ð·Ñ€Ð°ÑÑ‚Ð°Ð½Ð¸ÑŽ" << std::endl;
+	std::cout << "5 - Ð Ð°Ð·Ð²ÐµÑ€Ð½ÑƒÑ‚ÑŒ Ð¼Ð°ÑÑÐ¸Ð²" << std::endl;
+	std::cout << "6 - ÐŸÐ¾Ð¼ÐµÐ½ÑÑ‚ÑŒ Ð¼ÐµÑÑ‚Ð°Ð¼Ð¸ Ð¿ÐµÑ€Ð²Ñ‹Ð¹ Ð¼Ð°ÐºÑÐ¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¹ Ð¸ Ð¿Ð¾ÑÐ»ÐµÐ´Ð½Ð¸Ð¹ Ð¼Ð¸Ð½Ð¸Ð¼Ð°Ð»ÑŒÐ½Ñ‹Ð¹ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚ Ð¼Ð°ÑÑÐ¸Ð²Ð°" << std::endl;
+	std::cout << "7 - Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ Ð¸Ð· Ð¼Ð°ÑÑÐ¸Ð²Ð° Ð²ÑÐµ Ð´ÑƒÐ±Ð»Ð¸ÐºÐ°Ñ‚Ñ‹" << std::endl;
+	std::cout << "8 - Ð”Ð¾Ð±Ð°Ð²Ð¸Ñ‚ÑŒ Ð² Ð¼Ð°ÑÑÐ¸Ð² n ÑÐ»ÑƒÑ‡Ð°Ð¹Ð½Ñ‹Ñ… (Ð¾Ñ‚ 0 Ð´Ð¾ 99) ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð¾Ð²" << std::endl;
+	std::cout << "9 - Ð’ÐºÐ»/Ð²Ñ‹ÐºÐ» Ð¿Ð¾ÑÑ‚Ð¾ÑÐ½Ð½Ñ‹Ð¹ Ð²Ñ‹Ð²Ð¾Ð´ Ð¼Ð°ÑÑÐ¸Ð²Ð°" << std::endl;
 }
