@@ -171,9 +171,13 @@ void countSort(int* a, int len)
     for (int i = 0; i < len; i++)
     {
         if (a[i] > max)
+	{
             max = a[i];
+        }
         if (a[i] < min)
+        {
             min = a[i];
+        }
     }
     int *c = new int[max + 1 - min]{ 0 };
     for (int i = 0; i < len; i++)
