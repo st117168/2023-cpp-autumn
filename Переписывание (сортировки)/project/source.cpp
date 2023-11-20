@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
 	int* a = nullptr;
 	std::cout << "init. random array" << std::endl;
 	initRandomArray(n, 0, 9, a);
-    print(a, n);
+        print(a, n);
 	{
 		std::cout << "bubble sort" << std::endl;
 		mix(a, n);
@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
 		gnomeSort(a, n);
 		print(a, n);
 	}
-    {
+        {
 		std::cout << "monkey sort" << std::endl;
 		mix(a, n);
 		print(a, n);
