@@ -2,11 +2,11 @@
 
 void func(int n, int from, int to)
 {
-	if (n <= 0)
-	{
-		return;
-	}
-	else if (from + to == 4)
+    if (n <= 0)
+    {
+    	return;
+    }
+    else if (from + to == 4)
     {
         func(n, from, 2);
         func(n, 2, to);
@@ -24,6 +24,6 @@ int main(int argc, char* argv[])
 {
     int n = 0;
     std::cin >> n;
-	func(n, 1, 3);
-	return EXIT_SUCCESS;
+    func(n, 1, 3);
+    return EXIT_SUCCESS;
 }
