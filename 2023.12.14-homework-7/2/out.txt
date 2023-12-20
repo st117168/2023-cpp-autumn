@@ -1,0 +1,4 @@
+Cамое часто встречающееся слово: the
+
+isPalindrome("Level"): 1
+isPalindrome("banana"): 0

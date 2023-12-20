@@ -1,0 +1,12 @@
+Слов в тексте: 161
+Самое длинное предложение: While some people have the opinion that environmental problems are just a natural occurrence, others believe that human beings have a huge impact on the environment.
+
+strcat(first two entries): ﻿TheEnvironment.
+strstr("world"): 30
+substr(1-ая строка, 4, 6): Env
+
+strcmp("can", "can"): 0
+strcmp("b", "a"): 1
+strcmp("a", "b"): -1
+
+strmult(pe, 2): pepe
