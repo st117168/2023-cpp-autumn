@@ -255,7 +255,7 @@ void CGraph::initMatrixFromEdges()
 	initMatrix();
 	for (int i = 0; i < _edges; ++i)
 	{
-		_matrix[_edge[i].a][_edge[i].b] = _edge[i].w;
+		_matrix[_edge[i].a][_edge[i].b]++;
 	}
 }
 
@@ -340,9 +340,9 @@ std::ostream& operator<<(std::ostream& stream, const SEdge& edge)
 
 bool CGraph::FullGraph()
 {
-	for (int i = 1; i < (vertexCount() - 1); ++i)
+	for (int i = 1; i < (vertexCount()); ++i)
 	{
-		for (int j = i + 1; j < (vertexCount() - 1); ++j)
+		for (int j = i + 1; j < (vertexCount()); ++j)
 		{
 			if (_matrix[i][j] + _matrix[j][i] == 0)
 			{
