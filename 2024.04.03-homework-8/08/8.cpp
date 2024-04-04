@@ -33,8 +33,7 @@ public:
 	int roadsCount();
 	int vertexCount();
 	int power(int vertex);
-	void outputAdjencyList();
-	int countEdgesV(int vertex);
+	void outputAdjencyList(int v);
 
 private:
 	///ñîçäàåò ìàòðèöó ñìåæíîñòè n*n è ìàòðèöó ñ äóãàìè ðàçìåðà m
@@ -68,7 +67,8 @@ int main(int argc, char* argv[])
 	CGraph g(v, e);
 	g.ReadEdges(e, std::cin);
 	std::cout << v << std::endl;
-	g.outputAdjencyList();
+	g.outputAdjencyList(v);
+	g.PrintMatrix();
 	return EXIT_SUCCESS;
 }
 
@@ -87,31 +87,23 @@ CGraph::~CGraph()
 	dispose();
 }
 
-int CGraph::countEdgesV(int vertex)
+void CGraph::outputAdjencyList(int v)
 {
-	int c = 0;
-    for (int j = 0; j < vertexCount(); ++j)
-    {
-        c += _matrix[vertex][j];
-    }
-    return c;
-}
-
-void CGraph::outputAdjencyList()
-{
-	for (int i = 1; i < vertexCount(); ++i)
+	for (int i = 1; i <= v; ++i)
 	{
-		std::cout << countEdgesV(i) << " ";
-		int n = 0;
-		n = countEdgesV(i);
-        for(int j = 1; j < vertexCount(); ++j)
-        {
-            if (_matrix[i][j] == 1)
-            {
-                std::cout << j << " ";
-            }
-        }
-        --n;
+		int count = 0;
+		for (int j = 1; j <= v; ++j)
+		{
+			count += _matrix[i][j];
+		}
+		std::cout << count << " ";
+		for (int j = 1; j <= v; ++j)
+		{
+			if (_matrix[i][j] == 1)
+			{
+				std::cout << j << " ";
+			}
+		}
 		std::cout << std::endl;
 	}
 }

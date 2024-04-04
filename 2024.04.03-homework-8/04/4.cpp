@@ -33,7 +33,6 @@ public:
 	int roadsCount();
 	int vertexCount();
 	int power(int vertex);
-	bool isTour();
 	void Mockery();
 
 private:
@@ -185,38 +184,6 @@ int CGraph::power(int vertex)
 	return r;
 }
 
-bool CGraph::isTour()
-{
-	for (int i = 0; i < vertexCount(); ++i)
-	{
-		int c = 0;
-		for (int j = 0; j < vertexCount(); ++j)
-		{
-			if (_matrix[i][j] + _matrix[j][i] == 2)
-			{
-				return false;
-			}
-			/*
-			0 1 0 0
-			0 0 1 1
-			1 0 0 0
-			1 0 1 0
-			*/
-			/*
-			5 | 3  = 7      0b101 | 0b011 = 0b111
-			5 || 3 = true    true |  true = true
-
-			*/
-			c += (_matrix[i][j] | _matrix[j][i]);
-		}
-		if (c != vertexCount() - 1)
-		{
-			return false;
-		}
-	}
-	return true;
-}
-
 void CGraph::init()
 {
 	dispose();
@@ -338,17 +305,7 @@ std::ostream& operator<<(std::ostream& stream, const SEdge& edge)
 
 void CGraph::Mockery()
 {
-    int max = 1000;
-    for (int i = 0; i < vertexCount(); i++)
-    {
-        for (int j = 0; j < vertexCount(); j++)
-        {
-            if (max < _matrix[i][j])
-            {
-                max = _matrix[i][j];
-            }
-        }
-    }
+    int max = 3000;
     for (int i = 0; i < vertexCount(); i++)
     {
         for (int j = i + 1; j < vertexCount(); j++)
@@ -358,7 +315,6 @@ void CGraph::Mockery()
                 if (max > _matrix[i][j] + _matrix[j][k] + _matrix[i][k])
                 {
                     max = _matrix[i][j] + _matrix[j][k] + _matrix[i][k];
-                    std::cout << i << j << " " << j << k << " " << i << k << " ";
                 }
             }
         }
