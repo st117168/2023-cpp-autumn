@@ -33,8 +33,8 @@ public:
 	int roadsCount();
 	int vertexCount();
 	int power(int vertex);
-	bool isTour();
 	int CountPlanet();
+	void maspl();
 
 private:
 	///создает матрицу смежности n*n и матрицу с дугами размера m
@@ -45,6 +45,7 @@ private:
 	void initEdges();
 	void initMatrixFromEdges();
 	void initEdgesFromMatrix();
+	void initPlanet();
 	int getVertexesCountFromEdges();
 	int getEdgesCountFromMatrix();
 	///удаляет матрицу смежности и матрицу с дугами
@@ -53,11 +54,12 @@ private:
 	void disposeMatrix();
 	///удаляет матрицу с дугами
 	void disposeEdges();
+	void disposePlanet();
 
 	int _vertexes;
 	int _edges;
 	int** _matrix;
-	int* _color;
+	int* _plan;
 	SEdge* _edge;
 };
 
@@ -66,25 +68,26 @@ int main(int argc, char* argv[])
 	int v = 0;
 	std::cin >> v;
 	CGraph g(v, 0);
-	g.ReadEdges (v-1, std::cin);
-	int n = g.CountPlanet();
-	std::cout << n << std::endl;
+	g.ReadEdges(v - 1, std::cin);
+	std::cout << g.CountPlanet() << std::endl;
 	return EXIT_SUCCESS;
-}	
+}
 
 
 CGraph::CGraph()
-	: _vertexes(0), _edges(0), _matrix(nullptr), _edge(nullptr), _color(nullptr) {}
+	: _vertexes(0), _edges(0), _matrix(nullptr), _edge(nullptr), _plan(nullptr) {}
 
 CGraph::CGraph(int vertexes, int edges)
-	: _vertexes(vertexes), _edges(edges), _matrix(nullptr), _color(nullptr), _edge(nullptr)
+	: _vertexes(vertexes), _edges(edges), _matrix(nullptr), _plan(nullptr), _edge(nullptr)
 {
 	init();
+	initPlanet();
 }
 
 CGraph::~CGraph()
 {
 	dispose();
+	disposePlanet();
 }
 
 void CGraph::PrintMatrix()
@@ -185,38 +188,6 @@ int CGraph::power(int vertex)
 		r += (_matrix[vertex][i] != 0);
 	}
 	return r;
-}
-
-bool CGraph::isTour()
-{
-	for (int i = 0; i < vertexCount(); ++i)
-	{
-		int c = 0;
-		for (int j = 0; j < vertexCount(); ++j)
-		{
-			if (_matrix[i][j] + _matrix[j][i] == 2)
-			{
-				return false;
-			}
-			/*
-			0 1 0 0
-			0 0 1 1
-			1 0 0 0
-			1 0 1 0
-			*/
-			/*
-			5 | 3  = 7      0b101 | 0b011 = 0b111
-			5 || 3 = true    true |  true = true
-
-			*/
-			c += (_matrix[i][j] | _matrix[j][i]);
-		}
-		if (c != vertexCount() - 1)
-		{
-			return false;
-		}
-	}
-	return true;
 }
 
 void CGraph::init()
@@ -338,27 +309,45 @@ std::ostream& operator<<(std::ostream& stream, const SEdge& edge)
 	return stream;
 }
 
-int CGraph::CountPlanet()
+void CGraph::maspl()
 {
-	int vertex = vertexCount();
-	int cnt = 0;
-	int* egesPlanet = new int[vertex + 1] { 0 };
-
+	initPlanet();
 	for (int i = 0; i < _edges; ++i)
 	{
-		egesPlanet[_edge[i].a]++;
-		egesPlanet[_edge[i].b]++;
+		_plan[_edge[i].a]++;
+		_plan[_edge[i].b]++;
 	}
+}
 
-	for (int i = 1; i < vertex; ++i)
+void CGraph::initPlanet()
+{
+	if (_vertexes == 0)
 	{
-		if (egesPlanet[i] > 1)
+		return;
+	}
+	_plan = new int [_vertexes] {0};
+}
+
+void CGraph::disposePlanet()
+{
+	if (_plan != nullptr)
+	{
+		delete[] _plan;
+		_plan = nullptr;
+	}
+}
+
+int CGraph::CountPlanet()
+{
+	maspl();
+	int c = 0;
+	for (int i = 1; i < vertexCount(); ++i)
+	{
+		if (_plan[i] > 1)
 		{
-			cnt ++;
+			c++;
 		}
 	}
-
-	delete[] egesPlanet;
-
-	return cnt;
+	disposePlanet();
+	return c;
 }
