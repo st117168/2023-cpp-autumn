@@ -97,9 +97,11 @@ int main(int argc, char* argv[])
 
 void LinkedList::dispose()
 {
-	while (!IsEmpty())
+	while (head != nullptr)
 	{
-		PopHead();
+		Node* tmp = head;
+		head = head->next;
+		delete tmp;
 	}
 }
 
