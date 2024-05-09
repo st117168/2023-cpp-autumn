@@ -4,8 +4,14 @@ struct Node
 {
 	int data;
 	Node* next;
+	Node() : data(0), next(nullptr) {}
 	Node(int data, Node* next = nullptr) : data(data), next(next) {}
 	Node(const Node& node) : data(node.data), next(nullptr) {}
+	Node(Node&& node) noexcept : data(node.data), next(node.next) 
+	{
+		node.data = 0;
+		node.next = nullptr;
+	}
 	~Node() { data = 0; next = nullptr; }
 	friend std::ostream& operator<<(std::ostream& stream, Node*& node)
 	{
@@ -19,7 +25,26 @@ class LinkedList
 {
 public:
 	LinkedList() : head(nullptr) {};
-	~LinkedList() { dispose(); };
+	LinkedList(int data) : head(new Node(data)) {};
+	LinkedList(const LinkedList& list)
+	{
+		Node* tmp = list.head;
+		while (tmp != nullptr)
+		{
+			Insert(Length(), tmp->data);
+			tmp = tmp->next;
+		}
+	};
+	LinkedList(LinkedList&& list) noexcept : head(list.head) { list.head = nullptr; };
+	~LinkedList() 
+	{
+		while (head != nullptr)
+		{
+			Node* tmp = head;
+			head = head->next;
+			delete tmp;
+		}
+	};
 	int Length();
 	bool IsEmpty();
 	void PushHead(int data);
