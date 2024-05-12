@@ -18,12 +18,18 @@
     <ClCompile Include="source.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="CGraph_LinkedList.cpp">
+    <ClCompile Include="CGraph.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkedList.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkedList.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CGraph_LinkedList.h">
+    <ClInclude Include="CGraph.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

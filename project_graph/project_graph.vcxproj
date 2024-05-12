@@ -127,11 +127,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CGraph_LinkedList.cpp" />
+    <ClCompile Include="CGraph.cpp" />
+    <ClCompile Include="LinkedList.cpp" />
+    <ClCompile Include="LinkedList.h" />
     <ClCompile Include="source.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CGraph_LinkedList.h" />
+    <ClInclude Include="CGraph.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

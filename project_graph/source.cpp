@@ -1,6 +1,7 @@
 ﻿#include<iostream>
 
-#include"CGraph_LinkedList.h"
+#include"CGraph.h"
+#include"LinkedList.h"
 
 int main(int argc, char* argv[])
 {

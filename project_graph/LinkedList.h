@@ -19,7 +19,19 @@ class LinkedList {
 public:
 	friend class CGraph;
 	LinkedList() : head(nullptr) {}
-	LinkedList(const LinkedList& that);
+	LinkedList(const LinkedList& that) : head(nullptr)
+	{
+		if (that.head == nullptr)
+		{
+			return;
+		}
+		Node* tmp = that.head;
+		while (tmp != nullptr)
+		{
+			pushtail(tmp->data);
+			tmp = tmp->next;
+		}
+	}
 	~LinkedList() { dispose(); }
 	void pushhead(int data);
 	void pushtail(int data);
@@ -30,7 +42,16 @@ public:
 	int pophead();
 	int poptail();
 	int length();
-	friend std::ostream& operator<<(std::ostream& stream, const LinkedList& list);
+	friend std::ostream& operator<<(std::ostream& stream, const LinkedList& list)
+	{
+		Node* tmp = list.head;
+		while (tmp != nullptr)
+		{
+			stream << tmp << " ";
+			tmp = tmp->next;
+		}
+		return stream;
+	}
 	LinkedList& operator=(LinkedList& other)
 	{
 		if (other.head == nullptr)
@@ -65,45 +86,4 @@ private:
 	int getElem(int index);
 	int Extract(int data);
 	int countElem(int data);
-	LinkedList& NeiboursList(CGraph& graph, int v);
-	LinkedList& InputVertexesList(CGraph& graph, int v);
-	LinkedList& ISList(int v, CGraph& graph, LinkedList list, LinkedList& visited, LinkedList tmp);
-	LinkedList& ESList(int v, CGraph& graph, LinkedList list, LinkedList& visited, LinkedList tmp);
-};
-
-class CGraph {
-public:
-	friend class LinkedList;
-	CGraph();
-	CGraph(int vertexes);
-	CGraph(const CGraph& that);
-	~CGraph();
-	CGraph& operator=(CGraph& that);
-	void ReadMatrix();
-	void ReadEdges();
-	void ReadAdjacences();
-	void ReadIncidenceMatrix();
-	void PrintMatrix();
-	void printIntStabilityList();
-	void printExtStabilityList();
-	void printKernelList();
-	int getISN();
-	int getESN();
-
-private:
-	void initMatrix();
-	void initISList();
-	void initESList();
-	void initKernelList();
-	void disposeMatrix();
-	void dispose();
-	void doSymmetric();
-	void doReflexive(bool t);
-	void weightUnimportant();
-
-	int _vertexes;
-	int** _matrix;
-	LinkedList _KernelList;
-	LinkedList _IntStabList;
-	LinkedList _ExtStabList;
 };
