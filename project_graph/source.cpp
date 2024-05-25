@@ -6,14 +6,8 @@
 int main(int argc, char* argv[])
 {
 	CGraph g;
-	g.ReadMatrix();
-	//g.ReadEdges();
-	//g.ReadAdjacences();
-	//g.ReadIncidenceMatrix();
-
+	g.ReadEdges();
 	g.PrintMatrix();
-
-
 	std::cout << "----IntStabList-----" << std::endl;
 	g.printIntStabilityList();
 	std::cout << "IntStab Number: " << g.getISN() << std::endl;
@@ -22,6 +16,12 @@ int main(int argc, char* argv[])
 	std::cout << "ExtStab Number: " << g.getESN() << std::endl;
 	std::cout << "----KernelList------" << std::endl;
 	g.printKernelList();
-
+	//LinkedList list;
+	//list.pushtail(1);
+	//list.pushtail(2);
+	//list.pushtail(0);
+	//list.pushtail(11);
+	//list.pushtail(0);
+	//std::cout << list;
 	return EXIT_SUCCESS;
 }

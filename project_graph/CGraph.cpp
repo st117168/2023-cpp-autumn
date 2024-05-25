@@ -1,4 +1,4 @@
-#include<string>
+п»ї#include<string>
 
 #include"CGraph.h"
 #include"LinkedList.h"
@@ -183,62 +183,6 @@ void CGraph::doSymmetric()
 			}
 		}
 	}
-}
-
-void CGraph::initISList()
-{
-	if (_matrix == nullptr || _vertexes == 0)
-	{
-		return;
-	}
-	LinkedList list;
-	LinkedList visited;
-	LinkedList tmp;
-	LinkedList intList;
-	CGraph graph(*this);
-	graph.doReflexive(0);
-	graph.doSymmetric();
-	graph.weightUnimportant();
-	for (int i = 1; i <= _vertexes; ++i)
-	{
-		list.pushtail(i);
-	}
-	for (int i = 1; i <= _vertexes; ++i)
-	{
-		graph.ISList(i, intList, list, visited, tmp);
-	}
-	_IntStabList = intList;
-}
-
-void CGraph::initESList()
-{
-	if (_matrix == nullptr || _vertexes == 0)
-	{
-		return;
-	}
-	LinkedList list;
-	LinkedList visited;
-	LinkedList tmp;
-	LinkedList extList;
-	CGraph graph(*this);
-	graph.doReflexive(1);
-	graph.weightUnimportant();
-	for (int i = 1; i <= _vertexes; ++i)
-	{
-		list.pushtail(i);
-	}
-	for (int i = 1; i <= _vertexes; ++i)
-	{
-		graph.ESList(i, extList, list, visited, tmp);
-	}
-	// Поглощение
-	list = extList;
-	for (int i = 1; i <= list.countElem(0); ++i)
-	{
-		tmp.getSubset(list, i);
-		extList.absorption(tmp);
-	}
-	_ExtStabList = extList;
 }
 
 int CGraph::getISN()
@@ -563,13 +507,13 @@ void CGraph::ReadIncidenceMatrix()
 	initKernelList();
 }
 
-LinkedList& CGraph::NeiboursList(LinkedList& list, int v)
+LinkedList CGraph::NeiboursList(int v)
 {
 	if (_matrix == nullptr || !vertexIsValid(v))
 	{
-		return list;
+		return LinkedList();
 	}
-	list.dispose();
+	LinkedList list;
 	for (int i = 0; i < _vertexes; ++i)
 	{
 		if (_matrix[v - 1][i] > 0 || _matrix[i][v - 1] > 0)
@@ -580,14 +524,13 @@ LinkedList& CGraph::NeiboursList(LinkedList& list, int v)
 	return list;
 }
 
-LinkedList& CGraph::InputVertexesList(LinkedList& list, int v)
+LinkedList CGraph::InputVertexesList(int v)
 {
 	if (_matrix == nullptr || _vertexes == 0 || !vertexIsValid(v))
 	{
-		list.dispose();
-		return list;
+		return LinkedList();
 	}
-	list.dispose();
+	LinkedList list;
 	for (int i = 0; i < _vertexes; ++i)
 	{
 		if (_matrix[i][v - 1] > 0)
@@ -598,57 +541,76 @@ LinkedList& CGraph::InputVertexesList(LinkedList& list, int v)
 	return list;
 }
 
-LinkedList& CGraph::ISList(int v, LinkedList& currentList, LinkedList list, LinkedList& visited, LinkedList tmp)
+void CGraph::initISList()
 {
-	if (_matrix == nullptr || _vertexes == 0 || !vertexIsValid(v))
+	if (_matrix == nullptr || _vertexes == 0)
 	{
-		currentList.dispose();
-		return currentList;
+		return;
 	}
-	list.ExtractFirst(v);
-	visited.pushtail(v);
-	tmp.pushtail(v);
-
-	LinkedList neibours;
-	NeiboursList(neibours, v);
-	list.ExtractList(neibours);
-	visited.addList(neibours);
-
-	for (int i = 0; i < list.length(); ++i)
+	LinkedList list;
+	LinkedList tmp;
+	LinkedList intList;
+	CGraph graph(*this);
+	graph.doReflexive(0);
+	graph.doSymmetric();
+	graph.weightUnimportant();
+	for (int i = 1; i <= _vertexes; ++i)
 	{
-		ISList(list.getElem(i), currentList, list, visited, tmp);
+		list.pushtail(i);
 	}
-	if (list.isEmpty())
+	for (int i = 1; i <= _vertexes; ++i)
 	{
-		tmp.sort();
-		if (!tmp.ListInOtherList(currentList))
-		{
-			currentList.pushTailList(tmp);
-			currentList.pushtail(0);
-		}
+		graph.ISList(i, intList, list, tmp);
 	}
-	return currentList;
+	_IntStabList = intList;
 }
 
-LinkedList& CGraph::ESList(int v, LinkedList& currentList, LinkedList list, LinkedList& visited, LinkedList tmp)
+void CGraph::initESList()
+{
+	if (_matrix == nullptr || _vertexes == 0)
+	{
+		return;
+	}
+	LinkedList list;
+	LinkedList tmp;
+	LinkedList extList;
+	CGraph graph(*this);
+	graph.doReflexive(1);
+	graph.weightUnimportant();
+	for (int i = 1; i <= _vertexes; ++i)
+	{
+		list.pushtail(i);
+	}
+	for (int i = 1; i <= _vertexes; ++i)
+	{
+		graph.ESList(i, extList, list, tmp);
+	}
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	list = extList;
+	for (int i = 1; i <= list.countElem(0); ++i)
+	{
+		tmp.getSubset(list, i);
+		extList.absorption(tmp);
+	}
+	_ExtStabList = extList;
+}
+
+void CGraph::ISList(int v, LinkedList& currentList, LinkedList list, LinkedList tmp)
 {
 	if (_matrix == nullptr || _vertexes == 0 || !vertexIsValid(v))
 	{
 		currentList.dispose();
-		return currentList;
+		return;
 	}
 	list.ExtractFirst(v);
-	visited.pushtail(v);
 	tmp.pushtail(v);
 
-	LinkedList inputs;
-	InputVertexesList(inputs, v);
-	list.ExtractList(inputs);
-	visited.addList(inputs);
+	LinkedList neibours(NeiboursList(v));
+	list.ExtractList(neibours);
 
 	for (int i = 0; i < list.length(); ++i)
 	{
-		ESList(list.getElem(i), currentList, list, visited, tmp);
+		ISList(list.getElem(i), currentList, list, tmp);
 	}
 	if (list.isEmpty())
 	{
@@ -659,5 +621,34 @@ LinkedList& CGraph::ESList(int v, LinkedList& currentList, LinkedList list, Link
 			currentList.pushtail(0);
 		}
 	}
-	return currentList;
+	return;
+}
+
+void CGraph::ESList(int v, LinkedList& currentList, LinkedList list, LinkedList tmp)
+{
+	if (_matrix == nullptr || _vertexes == 0 || !vertexIsValid(v))
+	{
+		currentList.dispose();
+		return;
+	}
+	list.ExtractFirst(v);
+	tmp.pushtail(v);
+
+	LinkedList inputs(InputVertexesList(v));
+	list.ExtractList(inputs);
+
+	for (int i = 0; i < list.length(); ++i)
+	{
+		ESList(list.getElem(i), currentList, list, tmp);
+	}
+	if (list.isEmpty())
+	{
+		tmp.sort();
+		if (!tmp.ListInOtherList(currentList))
+		{
+			currentList.pushTailList(tmp);
+			currentList.pushtail(0);
+		}
+	}
+	return;
 }

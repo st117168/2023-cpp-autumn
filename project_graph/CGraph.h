@@ -102,10 +102,10 @@ private:
 	void doSymmetric();
 	void doReflexive(bool t);
 	void weightUnimportant();
-	LinkedList& NeiboursList(LinkedList& list, int v);
-	LinkedList& InputVertexesList(LinkedList& list, int v);
-	LinkedList& ISList(int v, LinkedList& currentList, LinkedList list, LinkedList& visited, LinkedList tmp);
-	LinkedList& ESList(int v, LinkedList& currentList, LinkedList list, LinkedList& visited, LinkedList tmp);
+	LinkedList NeiboursList(int v);
+	LinkedList InputVertexesList(int v);
+	void ISList(int v, LinkedList& currentList, LinkedList list, LinkedList tmp);
+	void ESList(int v, LinkedList& currentList, LinkedList list, LinkedList tmp);
 
 	int _vertexes;
 	int** _matrix;
