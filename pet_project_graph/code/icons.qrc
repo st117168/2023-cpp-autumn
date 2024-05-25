@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/mainWindow.png</file>
+        <file>icons/input.png</file>
+    </qresource>
+</RCC>
